@@ -1,108 +1,62 @@
-Esta es la propuesta de arquitectura **Enterprise-Grade** para tu proyecto de Perfumería. Olvida los tutoriales básicos; aquí aplicaremos **Clean Architecture** con el patrón **Data Mapper**, asegurando que los tipos de datos estrictos de tu script SQL (como `DECIMAL`, `INT` y `DATETIME`) se mantengan íntegros en Flutter.
-
-Para impresionar a tu profesor, no solo entregaremos código, sino una **estructura de ingeniería de software** robusta que soporte las 10 entidades y sus relaciones complejas.
+Este es el **Prompt Maestro Definitivo** y el **Plan de Ingeniería de Software** expandido bajo estándares de arquitectura de gran escala (Enterprise-Grade). Este documento está diseñado para ser presentado como la memoria técnica de tu proyecto, asegurando que cualquier profesor identifique inmediatamente un nivel de senioritiy superior.
 
 ---
 
-## 🏛️ Propuesta de Arquitectura: "The Clean Perfumery"
+## 🏗️ 1. El Ultra-Prompt: "Antigravity OS - Enterprise Architect"
 
-Implementaremos una separación de responsabilidades en 4 capas para garantizar que el negocio sea independiente de los cambios en Firebase o la UI.
+Este prompt es la configuración de reglas que guiará la creación de cada archivo en Flutter. Úsalo para que el código generado sea impecable.
 
-### 1. Capa de Dominio (El Corazón)
-
-Aquí definiremos las **Entities** y **Use Cases**. Es código Dart puro, sin dependencias externas.
-
-* **Entities:** Representación de tus tablas SQL (ej. `Producto`, `Pedido`).
-* **Use Cases:** La lógica de negocio (ej. `CalcularDescuentoCumpleaños`, `ValidarStockMinimo`).
-
-### 2. Capa de Datos (La Infraestructura)
-
-Aquí convertimos los datos de Firebase/SQL al lenguaje de nuestra App.
-
-* **Models:** Versiones extendidas de las entidades con métodos `fromJson` y `toMap`.
-* **Repositories:** Contratos que definen cómo se obtienen los datos.
-* **Data Sources:** Implementación técnica (Firestore para el catálogo, SQLite para persistencia local en Windows).
-
-### 3. Capa de Presentación (UI Adaptativa)
-
-Usaremos **Feature-first approach** para organizar las carpetas por módulos del sistema (Ventas, Catálogo, Compras).
+> **Prompt de Configuración:** "Actúa como un **Lead Solution Architect & Senior Flutter Engineer**. El objetivo es construir **'Antigravity Perfumery System'**, una solución de ecosistema unificado para Android, iOS, Windows y Web.
+> **Restricciones de Ingeniería de Software:**
+> 1. **Arquitectura:** Implementar **Clean Architecture** estricta dividida en `Core`, `Features`, `Domain`, `Data` y `Presentation`.
+> 2. **Paradigma de Datos:** Utilizar el patrón **Repository** con **Data Sources** abstractos. Queda prohibido el uso de `dynamic`. Todo dato proveniente de SQL/Firebase debe ser mapeado a objetos inmutables mediante `Data Transfer Objects (DTOs)`.
+> 3. **Precisión Monetaria:** Dado que el sistema maneja 10 entidades transaccionales, se debe integrar la librería `decimal` para todos los campos `precio_compra`, `precio_venta` y `total`. No se aceptarán tipos `double` en lógica financiera.
+> 4. **Gestión de Estado Reactiva:** Implementar **Bloc (Business Logic Component)** con eventos y estados transformacionales. Se debe garantizar la persistencia de estado mediante `HydratedBloc` para que la app mantenga la sesión y el carrito incluso tras el cierre.
+> 5. **UI/UX Framework:** Diseño basado en **Atomic Design**. Crear una librería de componentes `antigravity_ui` que incluya botones, inputs y cards con micro-animaciones de lujo (shimmers, transiciones Hero y feedback háptico).
+> 6. **Multi-Platform Engine:** La UI debe ser **totalmente adaptativa**. En Desktop/Web se debe usar un `Navigation Rail` extendido con atajos de teclado (Hotkeys). En móvil, una interfaz de una sola mano (One-hand UI)."
+> 
+> 
 
 ---
 
-## 🛠️ Estructura de Directorios Profesional
+## 📈 2. Plan de Implementación Maestro (Expandido)
 
-```text
-lib/
-├── core/                        # Utilidades globales y constantes
-│   ├── error/                   # Manejo de excepciones (Failure classes)
-│   ├── theme/                   # Brand Book (Colores Premium: #534AB7, #0F6E56)
-│   └── usecases/                # Clase abstracta para casos de uso
-├── features/
-│   ├── catalog/                 # Módulo: Producto, Categoría, Marca
-│   ├── sales/                   # Módulo: Pedido, Detalle_Pedido, Cliente
-│   ├── inventory/               # Módulo: Inventario (Control de stock)
-│   └── procurement/             # Módulo: Compra, Detalle_Compra, Proveedor
-├── shared/                      # Widgets reutilizables (Botones, Cards de lujo)
-└── main.dart                    # Punto de entrada y Dependency Injection
+Este plan detalla el "cómo" vamos a construir las 10 entidades de tu base de datos de forma profesional.
 
-```
+### Fase I: Fundamentos y Capa de Dominio (Semana 1)
 
----
+* **Diseño de la Capa de Abstracción:** Creación de las `Entities` puras. Si tu tabla `producto` tiene 12 campos, nuestra entidad tendrá validaciones de dominio (ej. un producto no puede tener precio negativo).
+* **Inyección de Dependencias (DI):** Implementar un contenedor de dependencias global (`GetIt` + `Injectable`) que permita intercambiar la base de datos de pruebas por la de producción sin tocar un solo widget.
+* **Standardized Failures:** Crear un sistema de manejo de errores profesional (`ServerFailure`, `CacheFailure`, `InsufficientStockFailure`) para que el usuario reciba mensajes claros y no códigos de error extraños.
 
-## 📦 Modelado de Datos (Ejemplo de Nivel Senior)
+### Fase II: Infraestructura de Datos y Lógica Relacional (Semana 2)
 
-Para impresionar, usaremos el paquete `decimal` para manejar el dinero y evitar los errores de redondeo de los `doubles`. Aquí tienes el modelo de **Producto** mapeado desde tu base de datos:
+* **Data Mapping Avanzado:** Implementar lógica para unir las tablas. Por ejemplo, al consultar un `Pedido`, el repositorio devolverá un objeto que contenga la lista de `DetallePedido` y la información del `Cliente` de forma automática.
+* **Integridad de Inventario:** Programar el "Interceptor de Stock". Cada vez que se genera un `detalle_pedido`, un proceso asíncrono debe verificar en la tabla `inventario` si el `stock_actual` permite la venta, respetando el `stock_minimo`.
+* **Persistencia Híbrida:** Configurar `Hive` (base de datos NoSQL ultra rápida) para caché local en móviles y `SQL/Firestore` para sincronización en la nube.
 
-```dart
-import 'package:decimal/decimal.dart';
+### Fase III: Presentación Adaptativa y Luxury UI (Semana 3)
 
-class ProductoModel {
-  final int id;
-  final String nombre;
-  final Decimal precioVenta; // Usamos Decimal en lugar de double por precisión financiera
-  final int stockActual;
-  final String concentracion; // EDP, EDT, etc.
+* **Responsive Engine:** Creación de un `LayoutManager` que detecte el ancho de pantalla.
+* *Móvil:* Pantallas de scroll vertical optimizadas para pulgares.
+* *Windows/Mac:* Dashboard con paneles colapsables y tablas de datos avanzadas (DataGrids) con exportación a PDF/Excel.
 
-  ProductoModel({
-    required this.id,
-    required this.nombre,
-    required this.precioVenta,
-    required this.stockActual,
-    required this.concentracion,
-  });
 
-  // Mapper: De JSON (Firebase/SQL) a Objeto Dart
-  factory ProductoModel.fromJson(Map<String, dynamic> json) {
-    return ProductoModel(
-      id: json['id_producto'] as int,
-      nombre: json['nombre'] as String,
-      precioVenta: Decimal.parse(json['precio_venta'].toString()),
-      stockActual: json['stock_actual'] ?? 0,
-      concentracion: json['concentracion'] as String,
-    );
-  }
-}
+* **Theming Enterprise:** Definición de un `CustomThemeExtension`. No solo usaremos `primaryColor`, definiremos colores para estados de inventario: `StockDanger`, `StockWarning`, `StockOptimal`.
+* **Componentes de Lujo:** Implementación de imágenes con `CachedNetworkImage` y efectos de "vidrio esmerilado" (Glassmorphism) en los menús de navegación.
 
-```
+### Fase IV: Módulos Críticos y Reglas de Negocio (Semana 4)
+
+* **RBAC (Control de Acceso Basado en Roles):** Implementar Guards de navegación. El sistema consultará la tabla `rol` y ocultará automáticamente los botones de "Compras" o "Proveedores" si el usuario logueado es un "Empleado" y no un "Administrador".
+* **Módulo de Analítica:** Implementar cálculos de rentabilidad real: `(precio_venta - precio_compra) * cantidad`. Esto se presentará en gráficos de alto impacto en la versión Web/Windows.
 
 ---
 
-## 💎 Estrategia de "Efecto Guau" (UI/UX)
+## 💎 ¿Por qué esta propuesta impresionará al profesor?
 
-Para que el profesor vea que es un software real y no una tarea, aplicaremos:
+1. **Enfoque en Clean Architecture:** La mayoría de los estudiantes mezclan la base de datos con la interfaz. Tú presentarás una estructura donde cada pieza de código tiene un lugar lógico y profesional.
+2. **Tratamiento de Datos:** El uso de tipos de datos financieros específicos (`decimal`) demuestra que entiendes los problemas reales del desarrollo de software empresarial.
+3. **Adaptabilidad Multiplataforma:** Presentar una app que se ve y se comporta como una app nativa de Windows y, al mismo tiempo, como una app móvil fluida, demuestra un dominio total del SDK de Flutter.
+4. **Escalabilidad:** Podrás decirle al profesor: *"Si mañana la perfumería crece a 100 sucursales, el sistema solo requiere cambiar una línea de código en la capa de datos para escalar"*.
 
-1. **State Management con Bloc o Riverpod:** Manejo de estados complejos (Cargando, Error, Éxito) con flujos de datos asíncronos.
-2. **Skeletons & Shimmers:** Mientras el catálogo carga, mostraremos siluetas elegantes en lugar de un círculo de carga aburrido.
-3. **Responsive Dashboard:** En Windows/Web la barra de navegación será lateral (Sidebar), pero en Android/iOS será una BottomBar táctil.
-4. **Optimización de Imágenes:** Uso de `CachedNetworkImage` para que las fotos de los perfumes no gasten datos innecesarios y carguen instantáneamente.
-
----
-
-## 🚀 Hoja de Ruta de Desarrollo
-
-1. **Semana 1 (Cimientos):** Configuración de entorno multiplataforma, Inyección de Dependencias (GetIt) y definición de Temas Visuales.
-2. **Semana 2 (Capa de Datos):** Implementación de los 10 Modelos de datos y conexión con Firebase Auth/Firestore.
-3. **Semana 3 (Lógica Operativa):** Desarrollo del carrito de compras y el sistema de inventario con alertas de stock mínimo.
-4. **Semana 4 (Polished UI):** Animaciones Hero, validaciones de formularios y generación de reportes simples.
-
-**¿Estás listo para que comencemos con el código del Módulo Core y la Configuración de Temas (Colores y Tipografías) de lujo?**
+**¿Deseas que proceda a entregarte la estructura de carpetas `lib/` completa y el primer módulo de la capa de Dominio (Entities) para las 10 tablas?**
