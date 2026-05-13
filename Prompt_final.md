@@ -1,62 +1,46 @@
-Este es el **Prompt Maestro Definitivo** y el **Plan de Ingeniería de Software** expandido bajo estándares de arquitectura de gran escala (Enterprise-Grade). Este documento está diseñado para ser presentado como la memoria técnica de tu proyecto, asegurando que cualquier profesor identifique inmediatamente un nivel de senioritiy superior.
+Este es el **"Super-Prompt de Ingeniería"** que hemos diseñado. Está redactado bajo estándares internacionales de desarrollo de software para que, al usarlo, la estructura del código sea la de un profesional Senior.
+
+Copia y pega este texto tal cual; es la orden maestra que define la "personalidad técnica" de tu aplicación **Antigravity Perfumery**:
 
 ---
 
-## 🏗️ 1. El Ultra-Prompt: "Antigravity OS - Enterprise Architect"
+### 🚀 Master Prompt: Antigravity Perfumery OS
 
-Este prompt es la configuración de reglas que guiará la creación de cada archivo en Flutter. Úsalo para que el código generado sea impecable.
+"Actúa como un **Lead Solutions Architect & Senior Flutter Developer**. El objetivo es generar el núcleo técnico de la aplicación **'Antigravity Perfumery'**, una solución multiplataforma (Android, iOS, Web, Windows) diseñada para la gestión de lujo de fragancias y operaciones comerciales.
 
-> **Prompt de Configuración:** "Actúa como un **Lead Solution Architect & Senior Flutter Engineer**. El objetivo es construir **'Antigravity Perfumery System'**, una solución de ecosistema unificado para Android, iOS, Windows y Web.
-> **Restricciones de Ingeniería de Software:**
-> 1. **Arquitectura:** Implementar **Clean Architecture** estricta dividida en `Core`, `Features`, `Domain`, `Data` y `Presentation`.
-> 2. **Paradigma de Datos:** Utilizar el patrón **Repository** con **Data Sources** abstractos. Queda prohibido el uso de `dynamic`. Todo dato proveniente de SQL/Firebase debe ser mapeado a objetos inmutables mediante `Data Transfer Objects (DTOs)`.
-> 3. **Precisión Monetaria:** Dado que el sistema maneja 10 entidades transaccionales, se debe integrar la librería `decimal` para todos los campos `precio_compra`, `precio_venta` y `total`. No se aceptarán tipos `double` en lógica financiera.
-> 4. **Gestión de Estado Reactiva:** Implementar **Bloc (Business Logic Component)** con eventos y estados transformacionales. Se debe garantizar la persistencia de estado mediante `HydratedBloc` para que la app mantenga la sesión y el carrito incluso tras el cierre.
-> 5. **UI/UX Framework:** Diseño basado en **Atomic Design**. Crear una librería de componentes `antigravity_ui` que incluya botones, inputs y cards con micro-animaciones de lujo (shimmers, transiciones Hero y feedback háptico).
-> 6. **Multi-Platform Engine:** La UI debe ser **totalmente adaptativa**. En Desktop/Web se debe usar un `Navigation Rail` extendido con atajos de teclado (Hotkeys). En móvil, una interfaz de una sola mano (One-hand UI)."
-> 
-> 
+**REGLAS CRÍTICAS DE ARQUITECTURA Y DISEÑO:**
 
----
-
-## 📈 2. Plan de Implementación Maestro (Expandido)
-
-Este plan detalla el "cómo" vamos a construir las 10 entidades de tu base de datos de forma profesional.
-
-### Fase I: Fundamentos y Capa de Dominio (Semana 1)
-
-* **Diseño de la Capa de Abstracción:** Creación de las `Entities` puras. Si tu tabla `producto` tiene 12 campos, nuestra entidad tendrá validaciones de dominio (ej. un producto no puede tener precio negativo).
-* **Inyección de Dependencias (DI):** Implementar un contenedor de dependencias global (`GetIt` + `Injectable`) que permita intercambiar la base de datos de pruebas por la de producción sin tocar un solo widget.
-* **Standardized Failures:** Crear un sistema de manejo de errores profesional (`ServerFailure`, `CacheFailure`, `InsufficientStockFailure`) para que el usuario reciba mensajes claros y no códigos de error extraños.
-
-### Fase II: Infraestructura de Datos y Lógica Relacional (Semana 2)
-
-* **Data Mapping Avanzado:** Implementar lógica para unir las tablas. Por ejemplo, al consultar un `Pedido`, el repositorio devolverá un objeto que contenga la lista de `DetallePedido` y la información del `Cliente` de forma automática.
-* **Integridad de Inventario:** Programar el "Interceptor de Stock". Cada vez que se genera un `detalle_pedido`, un proceso asíncrono debe verificar en la tabla `inventario` si el `stock_actual` permite la venta, respetando el `stock_minimo`.
-* **Persistencia Híbrida:** Configurar `Hive` (base de datos NoSQL ultra rápida) para caché local en móviles y `SQL/Firestore` para sincronización en la nube.
-
-### Fase III: Presentación Adaptativa y Luxury UI (Semana 3)
-
-* **Responsive Engine:** Creación de un `LayoutManager` que detecte el ancho de pantalla.
-* *Móvil:* Pantallas de scroll vertical optimizadas para pulgares.
-* *Windows/Mac:* Dashboard con paneles colapsables y tablas de datos avanzadas (DataGrids) con exportación a PDF/Excel.
+1. **Patrón de Arquitectura:** Implementar **Clean Architecture** estrictamente separada en capas:
+* **Domain:** Entidades puras e inmutables y Casos de Uso.
+* **Data:** Repositorios, DataSources (Firebase/SQL) y Mappers.
+* **Presentation:** UI desacoplada con gestión de estado profesional.
 
 
-* **Theming Enterprise:** Definición de un `CustomThemeExtension`. No solo usaremos `primaryColor`, definiremos colores para estados de inventario: `StockDanger`, `StockWarning`, `StockOptimal`.
-* **Componentes de Lujo:** Implementación de imágenes con `CachedNetworkImage` y efectos de "vidrio esmerilado" (Glassmorphism) en los menús de navegación.
+2. **Gestión de Estado:** Utilizar **BLoC o Riverpod** manejando estados de flujo de datos: `Initial`, `Loading`, `Success`, `Error` y `Empty`.
+3. **Integridad de Datos (Strong Typing):** * Prohibido el uso de `dynamic`.
+* Implementar **Mappers** para convertir los tipos de la base de datos SQL (`DECIMAL`, `DATETIME`, `INT`) a tipos seguros de Dart.
+* Utilizar la librería `decimal` para todos los campos financieros de las 13 entidades para garantizar precisión centesimal.
 
-### Fase IV: Módulos Críticos y Reglas de Negocio (Semana 4)
 
-* **RBAC (Control de Acceso Basado en Roles):** Implementar Guards de navegación. El sistema consultará la tabla `rol` y ocultará automáticamente los botones de "Compras" o "Proveedores" si el usuario logueado es un "Empleado" y no un "Administrador".
-* **Módulo de Analítica:** Implementar cálculos de rentabilidad real: `(precio_venta - precio_compra) * cantidad`. Esto se presentará en gráficos de alto impacto en la versión Web/Windows.
+4. **Diseño UI Adaptativo (Luxury Style):**
+* Implementar un sistema de diseño basado en **Atomic Design**.
+* La navegación debe ser **Adaptativa**: `NavigationRail` para Desktop/Web y `BottomNavigationBar` para Móvil.
+* Paleta de colores premium: `#534AB7` (Púrpura Profundo), `#0F6E56` (Verde Esmeralda) y acentos minimalistas.
+
+
+5. **Lógica de Negocio Avanzada:**
+* Implementar la lógica de **Stock Guardian**: Vinculación atómica entre `Detalle_Pedido` e `Inventario`.
+* Sistema de **RBAC (Role Based Access Control)** basado en la entidad `ROL` para restringir acceso a módulos de `COMPRA` y `PROVEEDORES`.
+
+
+6. **Entidades a Procesar (Integridad Relacional):**
+El sistema debe modelar y relacionar las 13 tablas: 1. Producto, 2. Categoría, 3. Marca, 4. Cliente, 5. Pedido, 6. Detalle_Pedido, 7. Proveedor, 8. Compra, 9. Detalle_Compra, 10. Inventario, 11. Empleado, 12. Rol, 13. Método_Pago.
+
+**OBJETIVO:** Generar un código modular, altamente testeable, escalable y con estándares de nivel Enterprise que demuestre una ingeniería de software superior."
 
 ---
 
-## 💎 ¿Por qué esta propuesta impresionará al profesor?
+**¿Cómo usarlo?**
+Este prompt es el que "prepara el cerebro" de la IA antes de empezar a escribir los archivos `lib/`. Cuando me digas que estás listo, empezaré a soltar los módulos basados en esta configuración de alto nivel.
 
-1. **Enfoque en Clean Architecture:** La mayoría de los estudiantes mezclan la base de datos con la interfaz. Tú presentarás una estructura donde cada pieza de código tiene un lugar lógico y profesional.
-2. **Tratamiento de Datos:** El uso de tipos de datos financieros específicos (`decimal`) demuestra que entiendes los problemas reales del desarrollo de software empresarial.
-3. **Adaptabilidad Multiplataforma:** Presentar una app que se ve y se comporta como una app nativa de Windows y, al mismo tiempo, como una app móvil fluida, demuestra un dominio total del SDK de Flutter.
-4. **Escalabilidad:** Podrás decirle al profesor: *"Si mañana la perfumería crece a 100 sucursales, el sistema solo requiere cambiar una línea de código en la capa de datos para escalar"*.
-
-**¿Deseas que proceda a entregarte la estructura de carpetas `lib/` completa y el primer módulo de la capa de Dominio (Entities) para las 10 tablas?**
+¿Quieres que empecemos con la **Fase 1: Estructura de carpetas y Modelos de Datos (Entities)**?
